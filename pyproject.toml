@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "ozd-registry-api"
+version = "0.1.0"
+description = "RESTful API для справочника организаций, зданий и видов деятельности"
+authors = ["Dary"]
+readme = "README.md"
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.115.14"
+uvicorn = {extras = ["standard"], version = "^0.35.0"}
+sqlalchemy = "^2.0.41"
+alembic = "^1.16.2"
+asyncpg = "^0.30.0"
+pydantic = ">=1.10.7,<2.0.0"
+python-dotenv = "^1.1.1"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.1"
+pytest-asyncio = "^1.0.0"
+httpx = "^0.28.1"
+pytest-cov = "^6.2.1"
+aiosqlite = "^0.21.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
