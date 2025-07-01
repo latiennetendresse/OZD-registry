@@ -1,8 +1,9 @@
 from typing import List, Optional
 
-from app.models.building import Building
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
+
+from app.models.building import Building
 
 
 class BuildingRepository:

@@ -69,6 +69,5 @@ class GeoSearchService:
         ne_lat, ne_lon = ne
         return [
             org for org in orgs
-            if sw_lat <= org.building.latitude <= ne_lat
-               and sw_lon <= org.building.longitude <= ne_lon
+            if sw_lat <= org.building.latitude <= ne_lat and sw_lon <= org.building.longitude <= ne_lon
         ]

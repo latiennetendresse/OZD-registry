@@ -1,10 +1,8 @@
 import asyncio
 
-from sqlalchemy.ext.asyncio import AsyncSession
-
 from app.db.session import AsyncSessionLocal, Base, engine
-from app.models.building import Building
 from app.models.activity import Activity
+from app.models.building import Building
 from app.models.organization import Organization
 
 

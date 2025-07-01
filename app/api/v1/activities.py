@@ -40,7 +40,8 @@ async def read_activity(activity_id: int, db: AsyncSession = Depends(get_db)):
     repo = ActivityRepository(db)
     act = await repo.get(activity_id)
     if not act:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Activity not found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail="Activity not found")
     return act
 
 
@@ -54,16 +55,19 @@ async def update_activity(
     data = activity.dict(exclude_unset=True)
     act = await repo.update(activity_id, data)
     if not act:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Activity not found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail="Activity not found")
     return act
 
 
 @router.delete("/{activity_id}", status_code=status.HTTP_204_NO_CONTENT)
-async def delete_activity(activity_id: int, db: AsyncSession = Depends(get_db)):
+async def delete_activity(activity_id: int,
+                          db: AsyncSession = Depends(get_db)):
     repo = ActivityRepository(db)
     deleted = await repo.delete(activity_id)
     if not deleted:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Activity not found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail="Activity not found")
 
 
 @router.get("/{root_id}/organizations", response_model=List[OrganizationOut])

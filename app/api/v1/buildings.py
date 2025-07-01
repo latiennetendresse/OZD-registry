@@ -21,7 +21,8 @@ async def list_buildings(db: AsyncSession = Depends(get_db)):
     return await repo.list()
 
 
-@router.post("/", response_model=BuildingOut, status_code=status.HTTP_201_CREATED)
+@router.post("/", response_model=BuildingOut,
+             status_code=status.HTTP_201_CREATED)
 async def create_building(
         payload: BuildingCreate,
         db: AsyncSession = Depends(get_db),
@@ -77,7 +78,8 @@ async def delete_building(
         )
 
 
-@router.get("/{building_id}/organizations", response_model=List[OrganizationOut])
+@router.get("/{building_id}/organizations",
+            response_model=List[OrganizationOut])
 async def list_organizations_in_building(
         building_id: int,
         db: AsyncSession = Depends(get_db),

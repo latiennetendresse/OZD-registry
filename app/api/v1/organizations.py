@@ -50,7 +50,8 @@ async def create_organization(
     for act_id in organization_in.activity_ids:
         act = await db.get(Activity, act_id)
         if act is None:
-            raise HTTPException(status_code=404, detail=f"Activity {act_id} not found")
+            raise HTTPException(status_code=404,
+                                detail=f"Activity {act_id} not found")
         acts.append(act)
 
     org = Organization(
@@ -69,7 +70,8 @@ async def read_organization(org_id: int, db: AsyncSession = Depends(get_db)):
     repo = OrganizationRepository(db)
     org = await repo.get(org_id)
     if not org:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Organization not found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail="Organization not found")
     return org
 
 
@@ -88,13 +90,15 @@ async def update_organization(
         for act_id in data.pop("activity_ids"):
             act = await db.get(Activity, act_id)
             if act is None:
-                raise HTTPException(status_code=404, detail=f"Activity {act_id} not found")
+                raise HTTPException(status_code=404,
+                                    detail=f"Activity {act_id} not found")
             acts.append(act)
         data["activities"] = acts
 
     updated = await repo.update(org_id, data)
     if not updated:
-        raise HTTPException(status_code=404, detail="Organization not found")
+        raise HTTPException(status_code=404,
+                            detail="Organization not found")
     return await repo.get(org_id)
 
 
@@ -103,4 +107,5 @@ async def delete_organization(org_id: int, db: AsyncSession = Depends(get_db)):
     repo = OrganizationRepository(db)
     deleted = await repo.delete(org_id)
     if not deleted:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Organization not found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail="Organization not found")
